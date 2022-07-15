@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:x-bind="http://www.w3.org/1999/xhtml" xmlns:x-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Alpine Test</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+<body>
+
+<style>
+    .hidden .stuff {
+        display: none;
+    }
+</style>
+
+    <div  x-bind:class="! open ? 'hidden' : ''">
+        <div x-data="{ open: true }" class="stuff" x-html="(await axios.get('./select.html')).data">
+            hello
+        </div>
+        <button x-on:click="open = !open">Toggle
+        </button>
+
+        <div x-data="{ search: '' }">
+            <input type="text" x-model="search">
+
+            Searching for: <span x-text="search"></span>
+        </div>
+    </div>
+</body>
+</html>
